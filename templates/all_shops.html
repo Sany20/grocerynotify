@@ -1,0 +1,97 @@
+{% include "headeruser.html" %}
+<style>
+   .search-container {
+            text-align: right;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-input {
+            padding: 10px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none;
+        }
+
+</style>
+<header class="masthead" style="background-image: url('../static/assets/img/home-bg.jpg')">
+    <div class="page-heading">
+        <h1>Items</h1>
+    </div>
+</header>
+<body>
+
+
+    <div class="container">
+        <!-- Search box is in a separate row above cards -->
+        <div class="row">
+            <div class="col-md-12">
+                 <div class="search-container">
+        <input id="searchInput" type="text" class="searchInput" placeholder="Search...">
+        <button class="search-button">Search</button>
+    </div>
+            </div>
+
+        </div>
+
+        <!-- Cards are in a separate row below the search box -->
+        <div class="row">
+            {% for shop in shops %}
+        <div class="py-5">
+            <div class="container">
+                <div class="row hidden-md-up">
+                    <div class="col-md-4">
+                        <div class="card border-primary">
+                            <div class="card-block" style="padding-left:20px">
+                                <h4 class="card-title">{{shop.name}}</h4>
+                                <p class="card-text p-y-1">Click below to view items.</p>
+                                <a href="{{ url_for('all_items', shop_id=shop.id) }}" class="card-link">View Items</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.getElementById('searchInput');
+            const cards = document.querySelectorAll('.card');
+
+            searchInput.addEventListener('input', function () {
+                const searchTerm = searchInput.value.toLowerCase();
+
+                cards.forEach(card => {
+                    const cardTitle = card.querySelector('h4').innerText.toLowerCase();
+                    if (cardTitle.includes(searchTerm)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+    </script>
+    <!-- Include your JavaScript libraries or frameworks here if needed -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
+
+</body>
+{% include "footer.html" %}

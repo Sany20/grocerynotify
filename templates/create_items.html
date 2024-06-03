@@ -1,0 +1,35 @@
+{% from "bootstrap5/form.html" import render_form %}
+{% block content %}
+{% include "header.html" %}
+
+<!-- Page Header -->
+<header
+  class="masthead"
+  style="background-image: url('../static/assets/img/edit-bg.jpg')"
+>
+
+</header>
+
+<main class="mb-4">
+  <div class="container">
+    <div class="row">
+
+<div class="col-lg-8 col-md-10 mx-auto">
+  <div class="container mt-5">
+        <h2>Create Items</h2>
+        <!-- ... (unchanged code) ... -->
+    <div class="form-group">
+        {{ render_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+    </div>
+
+<!-- ... (unchanged code) ... -->
+
+    </div>
+</div>
+
+
+    </div>
+  </div>
+</main>
+{% include "footer.html" %} {% endblock %}
+

@@ -1,0 +1,101 @@
+{% include "headeruser.html" %}
+<style>
+   .search-container {
+            text-align: right;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-input {
+            padding: 10px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none;
+        }
+
+</style>
+<header
+  class="masthead"
+  style="background-image: url('../static/assets/img/home-bg.jpg')"
+>
+  <div class="page-heading">
+          <h1>Items</h1>
+  </div>
+  </header>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="search-container">
+          <input id="searchInput" type="text" onkeyup="myFunction()" class="searchInput" placeholder="Search...">
+          <button class="search-button">Search</button>
+        </div>
+      </div>
+
+    </div>
+    <h2>Items for {{ selected_shop.name }}</h2>
+
+    {% if items %}
+      <table id="myTable" class="table">
+        <thead>
+          <tr>
+            <th>Item Name</th>
+            <th>Quantity(kg,gm,ltr,unit)</th>
+            <th>Price in Rs.</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in items %}
+            <tr>
+              <td>{{ item.name }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.price }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No items available for {{ selected_shop.name }}.</p>
+    {% endif %}
+  </div>
+
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("searchInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+  <!-- Include your JavaScript libraries or frameworks here if needed -->
+
+</body>
+{% include "footer.html" %}
+

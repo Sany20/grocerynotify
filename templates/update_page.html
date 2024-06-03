@@ -1,0 +1,57 @@
+<head>
+<style>
+     .creative-button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 8px;
+            background-color: #3498db;
+            border: 2px solid #3498db;
+        }
+</style>
+</head>
+
+{% include "header.html" %}
+<header
+  class="masthead"
+  style="background-image: url('../static/assets/img/home-bg.jpg')"
+>
+  <div class="page-heading">
+          <h1>Update Price</h1>
+  </div>
+  </header>
+
+<body>
+
+ <div class="container">
+     <h2>Update</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Shop Name</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+             {% for shop in user_shops %}
+          <tbody>
+              <tr>
+                <td>{{ shop.name }}</td>
+                  <td><button class="creative-button"><a href="{{url_for('update_items',shop_id=shop.id)}}">Update</a></button></td>
+              </tr>
+          </tbody>
+            {% endfor %}
+        </table>
+
+  </div>
+
+
+
+  <!-- Include your JavaScript libraries or frameworks here if needed -->
+
+</body>
+{% include "footer.html" %}
+

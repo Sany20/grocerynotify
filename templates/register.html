@@ -1,0 +1,71 @@
+
+{%include "header.html" %}
+
+<!-- Page Header -->
+<header
+  class="masthead"
+  style="background-image: url('../static/assets/img/register-bg.jpg')"
+>
+
+  <style>
+  img {
+    border-radius: 50%;
+  }
+  .creative-button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 8px;
+            background-color: #3498db;
+            color: #fff;
+            border: 2px solid #3498db;
+        }
+         .image-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .image-container img {
+            width: 100%;
+            max-width: 400px; /* Adjust the max-width as needed */
+            margin-bottom: 20px;
+        }
+</style>
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="page-heading">
+          <h1>Register</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="mb-4">
+  <div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto image-container">
+            <div>
+                <img src="../static/assets/img/shopkeeper.jpg" alt="Avatar" style="width:230px;">
+                <a href="{{ url_for('regadmin') }}" > <button class="creative-button" >ShopKeeper</button></a>
+
+            </div>
+            <div>
+                <img src="../static/assets/img/user.png" alt="Avatar" style="width:230px;">
+                <a href="{{ url_for('reguser') }}" > <button class="creative-button" >User</button></a>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+</main>
+
+{% include "footer.html" %}
